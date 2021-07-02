@@ -18,11 +18,15 @@ hbs.registerPartials(partialsPath);
 
 app.use(express.static(publicStaticDirPath));
 
- 
+ app.get('/', (req, res) => {
+     res.render('index', {
+         title: 'Weather'
+     })
+ })
 
 app.get("*", (req, res) => {
     res.render('404', {
-        title: "page not found"
+        title: "Page not found"
     })
 })
 
