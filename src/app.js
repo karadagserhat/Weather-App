@@ -20,9 +20,32 @@ app.use(express.static(publicStaticDirPath));
 
  app.get('/', (req, res) => {
      res.render('index', {
-         title: 'Weather'
+         title: 'Weather App'
      })
  })
+
+ app.get('/weather', (req, res) => {
+    const address = req.query.address
+    if(!address) {
+        return res.send({
+            error: "You must provide an address!"
+        })
+    }
+
+    weatherData(address, (error, {temperature, description, cityName} = {}) => {
+        if(error) {
+            return res.send({error})
+        }
+        
+        res.send({
+            temperature,
+            description,
+            cityName
+        })
+    })
+});
+
+
 
 app.get("*", (req, res) => {
     res.render('404', {
