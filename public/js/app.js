@@ -22,6 +22,8 @@ weatherForm.addEventListener('submit', (e) => {
             messageOne.textContent = data.cityName
             messageTwo.textContent = data.description 
             messageThree.textContent = data.temperature + String.fromCharCode(176)
+            search.value = ''
+            search.focus()
 
             
         }
